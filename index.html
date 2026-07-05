@@ -2,39 +2,29 @@
 <html lang="uz">
 <head>
 <meta charset="UTF-8">
-  <meta name="google-site-verification" content="MQXPpKVmv3vJVilQo-sIJRWKJ5r_xYlFF3-woXagUOY" />
 <link rel="icon" href="./images/link.png">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>LinkTalk</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{
-  --void:#080b12;
-  --panel:#0f1420;
-  --elevated:#161e2e;
-  --elevated2:#1c2538;
-  --border:#232d42;
-  --accent:#4c6fff;
-  --accent2:#7c9bff;
-  --accent-soft:rgba(76,111,255,0.14);
-  --text:#e7ecf6;
-  --text-muted:#8892a6;
-  --text-dim:#5b6478;
-  --success:#34d399;
-  --danger:#ff5c72;
-  --warn:#f5b942;
-  --radius:16px;
-  --radius-sm:10px;
-  font-family:'Inter',sans-serif;
+:root{  
+  --void:#080b12; --panel:#0f1420; --elevated:#161e2e; --elevated2:#1c2538;
+  --border:#232d42; --accent:#4c6fff; --accent2:#7c9bff; --accent-soft:rgba(76,111,255,0.14);
+  --text:#e7ecf6; --text-muted:#8892a6; --text-dim:#5b6478; --success:#34d399;
+  --danger:#ff5c72; --warn:#f5b942; --radius:16px; --radius-sm:10px;
+  --base-font:14.5px; font-family:'Inter',sans-serif;
 }
-*{box-sizing:border-box; margin:0; padding:0;}
+.light-mode{
+  --void:#f3f4f6; --panel:#ffffff; --elevated:#f9fafb; --elevated2:#f3f4f6;
+  --border:#e5e7eb; --accent:#4c6fff; --accent2:#3b82f6; --accent-soft:rgba(76,111,255,0.1);
+  --text:#1f2937; --text-muted:#4b5563; --text-dim:#9ca3af;
+}
+*{box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent; -webkit-user-select:none; user-select:none;}
+input, textarea{ -webkit-user-select:text; user-select:text; }
 body{
   background:radial-gradient(circle at 20% 0%, #101a2e 0%, var(--void) 55%);
-  color:var(--text);
-  height:100vh;
-  overflow:hidden;
-  -webkit-font-smoothing:antialiased;
+  color:var(--text); height:100vh; overflow:hidden; -webkit-font-smoothing:antialiased;
 }
 h1,h2,h3,.brand{font-family:'Space Grotesk',sans-serif;}
 button{font-family:inherit; cursor:pointer; border:none; outline:none; background:none; color:inherit;}
@@ -42,35 +32,20 @@ input,textarea{font-family:inherit; outline:none; border:none; background:none; 
 ::-webkit-scrollbar{width:6px; height:6px;}
 ::-webkit-scrollbar-thumb{background:#2a3550; border-radius:10px;}
 ::-webkit-scrollbar-track{background:transparent;}
-
 #app{height:100vh; width:100vw; position:relative;}
 .hidden{display:none !important;}
-
-/* ---------- LOGO ---------- */
-.logo-mark{
-  width:55px; height:55px; position:relative; flex-shrink:0;
-  display: flex; align-items: center; justify-content: center;
-}
-.logo-mark img{width:100%; height:100%; object-fit:contain;}
+.logo-mark{ width:55px; height:55px; position:relative; flex-shrink:0; display: flex; align-items: center; justify-content: center; }
+.logo-mark img{width:100%; height:100%; object-fit:contain; pointer-events:none;}
 .brand-row{display:flex; align-items:center; gap:14px;}
 .brand{font-size:26px; font-weight:700; letter-spacing:-0.5px;}
 .brand span{color:var(--accent2);}
-
-/* ---------- AUTH SCREEN ---------- */
 #authScreen{
-  height:100%; width:100%; display:flex; align-items:center; justify-content:center;
-  padding:20px;
-  background:
-    radial-gradient(circle at 15% 15%, rgba(76,111,255,0.12), transparent 40%),
-    radial-gradient(circle at 85% 85%, rgba(124,155,255,0.08), transparent 45%);
+  height:100%; width:100%; display:flex; align-items:center; justify-content:center; padding:20px;
+  background: radial-gradient(circle at 15% 15%, rgba(76,111,255,0.12), transparent 40%), radial-gradient(circle at 85% 85%, rgba(124,155,255,0.08), transparent 45%);
 }
 .auth-card{
-  width:100%; max-width:400px;
-  background:linear-gradient(180deg, var(--panel), var(--elevated));
-  border:1px solid var(--border);
-  border-radius:22px;
-  padding:36px 30px;
-  box-shadow:0 30px 80px -20px rgba(0,0,0,0.7);
+  width:100%; max-width:400px; background:linear-gradient(180deg, var(--panel), var(--elevated));
+  border:1px solid var(--border); border-radius:22px; padding:36px 30px; box-shadow:0 30px 80px -20px rgba(0,0,0,0.7);
 }
 .auth-card .brand-row{margin-bottom:8px;}
 .auth-sub{color:var(--text-muted); font-size:14px; margin-bottom:28px; margin-top:6px;}
@@ -79,61 +54,33 @@ input,textarea{font-family:inherit; outline:none; border:none; background:none; 
 .tab-btn.active{background:linear-gradient(135deg, var(--accent), #6c8aff); color:#fff; box-shadow:0 6px 16px -4px rgba(76,111,255,0.6);}
 .field{margin-bottom:16px;}
 .field label{display:block; font-size:12.5px; color:var(--text-muted); margin-bottom:7px; font-weight:600; letter-spacing:.2px;}
-.field input{
-  width:100%; padding:13px 14px; background:var(--void); border:1px solid var(--border);
-  border-radius:11px; font-size:14.5px; color:var(--text); transition:.2s;
-}
+.field input{ width:100%; padding:13px 14px; background:var(--void); border:1px solid var(--border); border-radius:11px; font-size:14.5px; color:var(--text); transition:.2s; }
 .field input:focus{border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-soft);}
-.primary-btn{
-  width:100%; padding:14px; border-radius:12px; font-weight:700; font-size:15px; color:#fff;
-  background:linear-gradient(135deg, var(--accent), #6c8aff);
-  box-shadow:0 10px 24px -8px rgba(76,111,255,0.65);
-  transition:.15s;
-}
+.primary-btn{ width:100%; padding:14px; border-radius:12px; font-weight:700; font-size:15px; color:#fff; background:linear-gradient(135deg, var(--accent), #6c8aff); box-shadow:0 10px 24px -8px rgba(76,111,255,0.65); transition:.15s; }
 .primary-btn:active{transform:scale(0.98);}
 .primary-btn:disabled{opacity:.5; cursor:not-allowed;}
 .auth-error{color:var(--danger); font-size:13px; margin-bottom:12px; min-height:16px;}
 .auth-note{margin-top:18px; font-size:12px; color:var(--text-dim); line-height:1.5; text-align:center;}
-
-/* ---------- MAIN APP LAYOUT ---------- */
 #mainApp{height:100%; width:100%; display:flex;}
-.sidebar{
-  width:340px; min-width:340px; background:var(--panel); border-right:1px solid var(--border);
-  display:flex; flex-direction:column; height:100%;
-}
+.sidebar{ width:340px; min-width:340px; background:var(--panel); border-right:1px solid var(--border); display:flex; flex-direction:column; height:100%; transition: transform .25s ease; }
 .sidebar-top{padding:18px 18px 12px 18px;}
 .sidebar-top .brand-row{margin-bottom:16px;}
 .logo-mark.small{width:34px; height:34px;}
 .brand.small{font-size:19px;}
-.search-box{
-  display:flex; align-items:center; gap:8px; background:var(--void); border:1px solid var(--border);
-  border-radius:12px; padding:10px 13px;
-}
+.search-box{ display:flex; align-items:center; gap:8px; background:var(--void); border:1px solid var(--border); border-radius:12px; padding:10px 13px; }
 .search-box input{flex:1; font-size:14px; color:var(--text);}
 .search-box svg{flex-shrink:0; opacity:.6;}
 .search-results{padding:0 10px; max-height:220px; overflow-y:auto;}
-.user-row{
-  display:flex; align-items:center; gap:12px; padding:10px 8px; border-radius:12px; transition:.15s;
-}
+.user-row{ display:flex; align-items:center; gap:12px; padding:10px 8px; border-radius:12px; transition:.15s; }
 .user-row:hover{background:var(--elevated);}
-.avatar{
-  width:44px; height:44px; border-radius:50%; flex-shrink:0; object-fit:cover;
-  background:linear-gradient(135deg,#3b4664,#232d42); display:flex; align-items:center; justify-content:center;
-  font-weight:700; color:var(--accent2); font-size:16px; position:relative;
-}
+.avatar{ width:44px; height:44px; border-radius:50%; flex-shrink:0; object-fit:cover; background:linear-gradient(135deg,#3b4664,#232d42); display:flex; align-items:center; justify-content:center; font-weight:700; color:var(--accent2); font-size:16px; position:relative; }
 .avatar.big{width:92px; height:92px; font-size:30px;}
-.online-dot{
-  width:11px; height:11px; border-radius:50%; background:var(--success); border:2px solid var(--panel);
-  position:absolute; bottom:0; right:0;
-}
+.online-dot{ width:11px; height:11px; border-radius:50%; background:var(--success); border:2px solid var(--panel); position:absolute; bottom:0; right:0; }
 .user-meta{flex:1; min-width:0;}
 .user-name{font-size:14.5px; font-weight:600;}
 .user-id{font-size:12px; color:var(--text-dim);}
 .chat-list{flex:1; overflow-y:auto; padding:6px 10px 10px 10px;}
-.chat-row{
-  display:flex; align-items:center; gap:12px; padding:11px 10px; border-radius:14px; cursor:pointer; transition:.15s;
-  position:relative;
-}
+.chat-row{ display:flex; align-items:center; gap:12px; padding:11px 10px; border-radius:14px; cursor:pointer; transition:.15s; position:relative; }
 .chat-row:hover{background:var(--elevated);}
 .chat-row.active{background:var(--accent-soft); border:1px solid rgba(76,111,255,0.35);}
 .chat-row-meta{flex:1; min-width:0;}
@@ -142,52 +89,34 @@ input,textarea{font-family:inherit; outline:none; border:none; background:none; 
 .chat-row-time{font-size:11px; color:var(--text-dim);}
 .chat-row-last{font-size:12.5px; color:var(--text-muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:200px;}
 .chat-empty-hint{padding:30px 20px; text-align:center; color:var(--text-dim); font-size:13px; line-height:1.6;}
-
-.sidebar-nav{
-  display:flex; border-top:1px solid var(--border); padding:8px 6px;
-}
-.nav-btn{
-  flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; padding:8px 4px;
-  color:var(--text-dim); border-radius:12px; font-size:11px; font-weight:600; transition:.15s;
-}
+.sidebar-nav{ display:flex; border-top:1px solid var(--border); padding:8px 6px; }
+.nav-btn{ flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; padding:8px 4px; color:var(--text-dim); border-radius:12px; font-size:11px; font-weight:600; transition:.15s; }
 .nav-btn.active{color:var(--accent2); background:var(--accent-soft);}
 .nav-btn svg{width:22px; height:22px;}
-
-/* ---------- CHAT PANEL ---------- */
-.chat-panel{flex:1; display:flex; flex-direction:column; height:100%; min-width:0; position:relative;}
-.chat-header{
-  display:flex; align-items:center; gap:13px; padding:14px 22px; border-bottom:1px solid var(--border);
-  background:var(--panel);
-}
+.chat-panel{flex:1; display:flex; flex-direction:column; height:100%; min-width:0; position:relative; transition: transform .25s ease;}
+.chat-header{ display:flex; align-items:center; gap:13px; padding:14px 22px; border-bottom:1px solid var(--border); background:var(--panel); }
 .chat-header .user-name{font-size:15.5px;}
 .chat-header .status-line{font-size:12px; color:var(--text-dim);}
 .status-line.online{color:var(--success);}
 .header-actions{margin-left:auto; display:flex; gap:8px;}
-.icon-btn{
-  width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center;
-  background:var(--elevated); transition:.15s; color:var(--text-muted);
-}
+.icon-btn{ width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center; background:var(--elevated); transition:.15s; color:var(--text-muted); }
 .icon-btn:hover{background:var(--elevated2); color:var(--text);}
 .icon-btn.danger:hover{background:rgba(255,92,114,0.15); color:var(--danger);}
 .back-btn{display:none;}
-
 .messages{flex:1; overflow-y:auto; padding:24px; display:flex; flex-direction:column; gap:10px;}
-.msg-row{display:flex; max-width:68%;}
-.msg-row.me{align-self:flex-end; justify-content:flex-end;}
-.msg-row.them{align-self:flex-start;}
-.bubble{
-  padding:10px 14px; border-radius:16px; font-size:14.5px; line-height:1.45; position:relative; word-break:break-word;
-}
+.msg-row{display:flex; max-width:75%; position:relative; group:relative; align-items:center; gap:8px;}
+.msg-row.me{align-self:flex-end; justify-content:flex-end; flex-direction:row;}
+.msg-row.them{align-self:flex-start; flex-direction:row-reverse;}
+.msg-del-btn{ opacity:0; color:var(--danger); font-size:12px; cursor:pointer; padding:4px; transition:opacity .2s; }
+.msg-row:hover .msg-del-btn{ opacity:1; }
+.bubble{ padding:10px 14px; border-radius:16px; font-size:var(--base-font); line-height:1.45; position:relative; word-break:break-word; }
 .msg-row.me .bubble{background:linear-gradient(135deg, var(--accent), #6c8aff); color:#fff; border-bottom-right-radius:5px;}
 .msg-row.them .bubble{background:var(--elevated); border-bottom-left-radius:5px;}
-.bubble img{max-width:220px; border-radius:12px; display:block; margin-top:2px;}
-.bubble video{max-width:220px; border-radius:12px; display:block; margin-top:2px;}
+.bubble img, .bubble video{max-width:220px; border-radius:12px; display:block; margin-top:2px; pointer-events:none;}
 .msg-time{font-size:10px; opacity:.65; margin-top:4px; display:block; text-align:right;}
 .msg-emoji-only{font-size:38px; background:none !important; padding:2px 0;}
-
 .chat-welcome{flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; color:var(--text-dim); text-align:center; padding:20px;}
 .chat-welcome .logo-mark{width:74px; height:74px;}
-
 .composer{padding:14px 20px; border-top:1px solid var(--border); background:var(--panel); position:relative;}
 .composer-row{display:flex; align-items:flex-end; gap:10px; background:var(--void); border:1px solid var(--border); border-radius:18px; padding:8px 10px;}
 .composer textarea{flex:1; resize:none; max-height:110px; font-size:14.5px; padding:8px 4px; line-height:1.4;}
@@ -195,22 +124,20 @@ input,textarea{font-family:inherit; outline:none; border:none; background:none; 
 .composer-btn:hover{background:var(--elevated); color:var(--text);}
 .send-btn{background:linear-gradient(135deg, var(--accent), #6c8aff); color:#fff;}
 .send-btn:hover{filter:brightness(1.1);}
-
-.emoji-panel{
-  position:absolute; bottom:76px; left:20px; background:var(--elevated2); border:1px solid var(--border);
-  border-radius:16px; padding:12px; display:grid; grid-template-columns:repeat(8,1fr); gap:4px;
-  box-shadow:0 20px 50px -14px rgba(0,0,0,0.7); z-index:20;
-}
+.emoji-panel{ position:absolute; bottom:76px; left:20px; background:var(--elevated2); border:1px solid var(--border); border-radius:16px; padding:12px; display:grid; grid-template-columns:repeat(8,1fr); gap:4px; box-shadow:0 20px 50px -14px rgba(0,0,0,0.7); z-index:20; }
 .emoji-panel button{font-size:20px; padding:6px; border-radius:8px;}
 .emoji-panel button:hover{background:var(--elevated);}
-
-/* ---------- PROFILE PANEL ---------- */
-.profile-panel{
-  width:340px; min-width:340px; border-left:1px solid var(--border); background:var(--panel);
-  display:flex; flex-direction:column; height:100%; overflow-y:auto;
+.profile-panel{ width:340px; min-width:340px; border-left:1px solid var(--border); background:var(--panel); display:flex; flex-direction:column; height:100%; overflow-y:auto; transition: transform .25s ease; }
+.profile-header {
+  padding: 30px 22px 22px 22px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Rasmni va yozuvlarni gorizontal o'rtaga tekislaydi */
+  justify-content: center;
 }
-.profile-header{padding:22px; text-align:center; border-bottom:1px solid var(--border);}
-.profile-header .avatar.big{margin:0 auto 14px auto;}
 .profile-name{font-size:19px; font-weight:700;}
 .profile-id{color:var(--accent2); font-size:13px; margin-top:4px; font-weight:600;}
 .profile-bio{color:var(--text-muted); font-size:13px; margin-top:10px; line-height:1.5;}
@@ -218,10 +145,7 @@ input,textarea{font-family:inherit; outline:none; border:none; background:none; 
 .profile-section h4{font-size:12px; text-transform:uppercase; letter-spacing:.6px; color:var(--text-dim); margin-bottom:12px;}
 .gallery-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:6px;}
 .gallery-grid img{width:100%; aspect-ratio:1; object-fit:cover; border-radius:9px;}
-.upload-tile{
-  aspect-ratio:1; border-radius:9px; border:1.5px dashed var(--border); display:flex; align-items:center;
-  justify-content:center; color:var(--text-dim); font-size:26px; transition:.15s;
-}
+.upload-tile{ aspect-ratio:1; border-radius:9px; border:1.5px dashed var(--border); display:flex; align-items:center; justify-content:center; color:var(--text-dim); font-size:26px; transition:.15s; }
 .upload-tile:hover{border-color:var(--accent); color:var(--accent2);}
 .settings-row{display:flex; align-items:center; justify-content:space-between; padding:12px 0;}
 .settings-row-label{font-size:14px; font-weight:500;}
@@ -235,16 +159,12 @@ input,textarea{font-family:inherit; outline:none; border:none; background:none; 
 .small-btn:hover{background:#243050;}
 .logout-btn{width:100%; padding:12px; border-radius:11px; background:rgba(255,92,114,0.1); color:var(--danger); font-weight:700; font-size:13.5px; margin-top:4px;}
 .logout-btn:hover{background:rgba(255,92,114,0.18);}
-
-/* ---------- CALL OVERLAY ---------- */
-#callOverlay{
-  position:fixed; inset:0; background:#04060b; z-index:100; display:flex; flex-direction:column; align-items:center; justify-content:center;
-}
+.theme-selector, .font-selector{ display:flex; gap:8px; margin-top:6px; }
+.selector-btn{ flex:1; padding:8px; border-radius:8px; background:var(--elevated2); border:1px solid var(--border); font-size:12px; font-weight:600; text-align:center; }
+.selector-btn.active{ background:var(--accent-soft); border-color:var(--accent); color:var(--accent2); }
+#callOverlay{ position:fixed; inset:0; background:#04060b; z-index:100; display:flex; flex-direction:column; align-items:center; justify-content:center; }
 .call-remote{width:100%; height:100%; object-fit:cover; position:absolute; inset:0; background:#0c1220;}
-.call-local{
-  position:absolute; width:130px; height:180px; border-radius:16px; object-fit:cover; bottom:120px; right:24px;
-  border:2px solid var(--border); background:#0c1220; box-shadow:0 10px 30px rgba(0,0,0,0.5);
-}
+.call-local{ position:absolute; width:130px; height:180px; border-radius:16px; object-fit:cover; bottom:120px; right:24px; border:2px solid var(--border); background:#0c1220; box-shadow:0 10px 30px rgba(0,0,0,0.5); }
 .call-info{position:absolute; top:50px; left:0; right:0; text-align:center; z-index:2;}
 .call-info .avatar.big{margin:0 auto 14px auto;}
 .call-status{color:var(--text-muted); font-size:14px; margin-top:6px;}
@@ -256,8 +176,6 @@ input,textarea{font-family:inherit; outline:none; border:none; background:none; 
 .call-btn.off{background:#3a3f4d; color:var(--danger);}
 .call-btn.hangup{background:var(--danger);}
 .incoming-badge{position:absolute; top:20px; left:50%; transform:translateX(-50%); background:var(--elevated2); padding:6px 16px; border-radius:20px; font-size:12px; color:var(--accent2); font-weight:600;}
-
-/* ---------- MODALS ---------- */
 .modal-backdrop{position:fixed; inset:0; background:rgba(4,6,11,0.7); backdrop-filter:blur(4px); z-index:200; display:flex; align-items:center; justify-content:center; padding:20px;}
 .modal-card{background:linear-gradient(180deg,var(--panel),var(--elevated)); border:1px solid var(--border); border-radius:20px; padding:28px; max-width:380px; width:100%; text-align:center;}
 .modal-card .logo-mark{margin:0 auto 16px auto;}
@@ -267,41 +185,26 @@ input,textarea{font-family:inherit; outline:none; border:none; background:none; 
 .modal-actions button{flex:1; padding:12px; border-radius:11px; font-weight:700; font-size:14px;}
 .modal-actions .yes-btn{background:linear-gradient(135deg, var(--accent), #6c8aff); color:#fff;}
 .modal-actions .no-btn{background:var(--elevated2); color:var(--text);}
-
-/* ---------- TOAST (fake incoming sms/call banner) ---------- */
 #toastZone{position:fixed; top:16px; right:16px; z-index:300; display:flex; flex-direction:column; gap:10px;}
-.toast{
-  width:300px; background:var(--elevated2); border:1px solid var(--border); border-radius:14px; padding:13px 15px;
-  display:flex; gap:11px; align-items:flex-start; box-shadow:0 20px 50px -14px rgba(0,0,0,0.6);
-  animation:toastIn .25s ease;
-}
+.toast{ width:300px; background:var(--elevated2); border:1px solid var(--border); border-radius:14px; padding:13px 15px; display:flex; gap:11px; align-items:flex-start; box-shadow:0 20px 50px -14px rgba(0,0,0,0.6); animation:toastIn .25s ease; }
 @keyframes toastIn{from{opacity:0; transform:translateY(-10px);} to{opacity:1; transform:translateY(0);}}
 .toast-title{font-size:13px; font-weight:700;}
 .toast-body{font-size:12.5px; color:var(--text-muted); margin-top:2px;}
-
-/* ---------- OFFLINE SCREEN ---------- */
-#offlineScreen{
-  position:fixed; inset:0; background:var(--void); z-index:500; display:flex; flex-direction:column;
-  align-items:center; justify-content:center; gap:16px; text-align:center; padding:20px;
-}
+#offlineScreen{ position:fixed; inset:0; background:var(--void); z-index:500; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; text-align:center; padding:20px; }
 #offlineScreen h2{font-size:20px;}
 #offlineScreen p{color:var(--text-muted); font-size:13.5px; max-width:280px; line-height:1.6;}
 
-/* ---------- RESPONSIVE ---------- */
 @media (max-width: 880px){
-  .profile-panel{
-    position:fixed; right:0; top:0; bottom:0; z-index:60; box-shadow:-20px 0 40px rgba(0,0,0,0.4);
-    transform:translateX(100%); transition:.25s;
-  }
+  .profile-panel{ position:fixed; right:0; top:0; bottom:0; z-index:60; box-shadow:-20px 0 40px rgba(0,0,0,0.4); transform:translateX(100%); width:100%; max-width:340px; }
   .profile-panel.open{transform:translateX(0);}
 }
 @media (max-width: 700px){
-  .sidebar{position:fixed; inset:0; z-index:40; width:100%; min-width:0; transition:.2s;}
+  .sidebar{position:fixed; inset:0; z-index:40; width:100%; min-width:0;}
   .sidebar.chat-open{transform:translateX(-100%);}
-  .chat-panel{position:fixed; inset:0; z-index:30; transform:translateX(100%); transition:.2s;}
+  .chat-panel{position:fixed; inset:0; z-index:30; transform:translateX(100%);}
   .chat-panel.open{transform:translateX(0);}
-  .back-btn{display:flex;}
-  .msg-row{max-width:82%;}
+  .back-btn{display:flex; margin-right:4px;}
+  .msg-row{max-width:85%;}
   .call-local{width:96px; height:130px; bottom:100px; right:14px;}
 }
 </style>
@@ -312,25 +215,20 @@ input,textarea{font-family:inherit; outline:none; border:none; background:none; 
   <div id="authScreen">
     <div class="auth-card">
       <div class="brand-row">
-        <div class="logo-mark">
-          <img src="./images/link.png" alt="logo">
-        </div>
+        <div class="logo-mark"><img src="./images/link.png" alt="logo"></div>
         <div class="brand">Link<span>Talk</span></div>
       </div>
       <div class="auth-sub">Odamlar bilan matn, rasm va video orqali bog'laning.</div>
-
       <div class="tabs">
         <button class="tab-btn active" id="tabLogin" onclick="switchTab('login')">Kirish</button>
         <button class="tab-btn" id="tabRegister" onclick="switchTab('register')">Ro'yxatdan o'tish</button>
       </div>
-
       <div id="loginForm">
         <div class="field"><label>Username</label><input id="loginUsername" placeholder="masalan: tolibjon_5871" autocomplete="off"></div>
         <div class="field"><label>Parol</label><input id="loginPassword" type="password" placeholder="Parolingiz"></div>
         <div class="auth-error" id="loginError"></div>
         <button class="primary-btn" onclick="doLogin()">Kirish</button>
       </div>
-
       <div id="registerForm" class="hidden">
         <div class="field"><label>Ismingiz</label><input id="regName" placeholder="To'liq ismingiz"></div>
         <div class="field"><label>Username</label><input id="regUsername" placeholder="faqat lotin harf/raqam" autocomplete="off"></div>
@@ -338,7 +236,6 @@ input,textarea{font-family:inherit; outline:none; border:none; background:none; 
         <div class="auth-error" id="regError"></div>
         <button class="primary-btn" onclick="doRegister()">Akkaunt ochish</button>
       </div>
-
       <div class="auth-note">Akkauntingiz xotirada saqlanadi — boshqa qurilmadan ham shu username va parol bilan kira olasiz.</div>
     </div>
   </div>
@@ -347,9 +244,7 @@ input,textarea{font-family:inherit; outline:none; border:none; background:none; 
     <div class="sidebar" id="sidebarEl">
       <div class="sidebar-top">
         <div class="brand-row">
-          <div class="logo-mark small">
-            <img src="./images/link.png" alt="logo">
-          </div>
+          <div class="logo-mark small"><img src="./images/link.png" alt="logo"></div>
           <div class="brand small">Link<span style="color:var(--accent2)">Talk</span></div>
         </div>
         <div class="search-box">
@@ -377,9 +272,7 @@ input,textarea{font-family:inherit; outline:none; border:none; background:none; 
 
     <div class="chat-panel" id="chatPanelEl">
       <div id="chatWelcome" class="chat-welcome">
-        <div class="logo-mark">
-          <img src="./images/link.png" alt="logo">
-        </div>
+        <div class="logo-mark"><img src="./images/link.png" alt="logo"></div>
         <div>Suhbatni boshlash uchun chapdan odam tanlang</div>
         <div style="font-size:12px;">yoki username / ID orqali qidiring</div>
       </div>
@@ -445,9 +338,7 @@ input,textarea{font-family:inherit; outline:none; border:none; background:none; 
 
   <div class="modal-backdrop hidden" id="notifModal">
     <div class="modal-card">
-      <div class="logo-mark">
-        <img src="./images/link.png" alt="">
-      </div>
+      <div class="logo-mark"><img src="./images/link.png" alt=""></div>
       <h3>Xabarlar yoqilsinmi?</h3>
       <p>Yangi SMS va qo'ng'iroqlar haqida bildirishnoma va tovush olishni xohlaysizmi?</p>
       <div class="modal-actions">
@@ -470,11 +361,6 @@ input,textarea{font-family:inherit; outline:none; border:none; background:none; 
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <script>
-/* =========================================================
-   FIREBASE CONFIG — BU YERGA O'Z CONFIG'INGIZNI QO'YING
-   (Firebase Console -> Project settings -> Your apps -> Web app)
-========================================================= */
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyA4H9OOIvpIyCxL_rSdahGmRyLf_XPSBko",
   authDomain: "linktalk-390d0.firebaseapp.com",
@@ -485,50 +371,22 @@ const firebaseConfig = {
   measurementId: "G-EFHHSZFVYK"
 };
 firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
-const db = firebase.firestore();
-const EMAIL_SUFFIX = "@linktalk.app"; // username -> ichki email formatiga aylantiramiz
+const auth = firebase.auth(), db = firebase.firestore();
+const EMAIL_SUFFIX = "@linktalk.app";
+
+let CURRENT_USER = null, ACTIVE_CONTACT = null, CONTACTS_CACHE = {}, notifEnabled = false;
+let mediaStream = null, pc = null, callTargetUser = null, inCallVideo = true, micOn = true, camOn = true;
+let mediaRecorder = null, recordedChunks = [], isRecordingVideo = false;
+let unsubMessages = null, unsubChatsList = null, unsubPresence = null, unsubSignals = null, presenceHeartbeat = null;
+let currentAppTheme = 'dark', currentAppFont = 'medium';
 
 function usernameToEmail(u){ return u + EMAIL_SUFFIX; }
 function nowTs(){ return Date.now(); }
-function fmtTime(ts){
-  const d = new Date(ts);
-  return d.getHours().toString().padStart(2,'0')+':'+d.getMinutes().toString().padStart(2,'0');
-}
-function initials(name){
-  return (name||'?').trim().split(/\s+/).slice(0,2).map(w=>w[0]?.toUpperCase()||'').join('');
-}
+function fmtTime(ts){ const d = new Date(ts); return d.getHours().toString().padStart(2,'0')+':'+d.getMinutes().toString().padStart(2,'0'); }
+function initials(name){ return (name||'?').trim().split(/\s+/).slice(0,2).map(w=>w[0]?.toUpperCase()||'').join(''); }
 function pairKey(a,b){ return [a,b].sort().join('__'); }
-function escapeHtml(s){
-  const d = document.createElement('div'); d.textContent = s==null?'':String(s); return d.innerHTML;
-}
+function escapeHtml(s){ const d = document.createElement('div'); d.textContent = s==null?'':String(s); return d.innerHTML; }
 
-/* =========================================================
-   STATE
-========================================================= */
-let CURRENT_USER = null; // {username, id, name, bio, avatar}
-let ACTIVE_CONTACT = null;
-let CONTACTS_CACHE = {};
-let notifEnabled = false;
-let mediaStream = null;
-let pc = null;
-let callTargetUser = null;
-let inCallVideo = true;
-let micOn = true;
-let camOn = true;
-let mediaRecorder = null;
-let recordedChunks = [];
-let isRecordingVideo = false;
-
-let unsubMessages = null;
-let unsubChatsList = null;
-let unsubPresence = null;
-let unsubSignals = null;
-let presenceHeartbeat = null;
-
-/* =========================================================
-   AUTH
-========================================================= */
 function switchTab(tab){
   document.getElementById('tabLogin').classList.toggle('active', tab==='login');
   document.getElementById('tabRegister').classList.toggle('active', tab==='register');
@@ -540,58 +398,44 @@ async function doRegister(){
   const name = document.getElementById('regName').value.trim();
   const username = document.getElementById('regUsername').value.trim().toLowerCase();
   const password = document.getElementById('regPassword').value;
-  const errEl = document.getElementById('regError');
-  errEl.textContent = '';
+  const errEl = document.getElementById('regError'); errEl.textContent = '';
   if(!name || !username || !password){ errEl.textContent = "Barcha maydonlarni to'ldiring."; return; }
   if(!/^[a-z0-9_]{3,20}$/.test(username)){ errEl.textContent = 'Username faqat lotin harf, raqam, "_" (3-20 belgi).'; return; }
   if(password.length < 6){ errEl.textContent = "Parol kamida 6 belgidan iborat bo'lsin."; return; }
-
   try{
     const existing = await db.collection('users').doc(username).get();
     if(existing.exists){ errEl.textContent = "Bu username band. Boshqasini tanlang."; return; }
-
-    const cred = await auth.createUserWithEmailAndPassword(usernameToEmail(username), password);
-
-    // ID generatsiya qilish (transaction bilan xavfsiz increment)
+    await auth.createUserWithEmailAndPassword(usernameToEmail(username), password);
     const counterRef = db.collection('meta').doc('idCounter');
     const newId = await db.runTransaction(async (tx)=>{
       const snap = await tx.get(counterRef);
-      let val = snap.exists ? snap.data().value : 100000;
-      val += 1;
-      tx.set(counterRef, {value: val});
-      return 'LT-' + val;
+      let val = snap.exists ? snap.data().value : 100000; val += 1;
+      tx.set(counterRef, {value: val}); return 'LT-' + val;
     });
-
     const userObj = { username, id:newId, name, bio:'', avatar:null, createdAt: nowTs() };
     await db.collection('users').doc(username).set(userObj);
     loginSuccess(userObj);
-  }catch(e){
-    errEl.textContent = friendlyAuthError(e);
-  }
+  }catch(e){ errEl.textContent = friendlyAuthError(e); }
 }
 
 async function doLogin(){
   const username = document.getElementById('loginUsername').value.trim().toLowerCase();
   const password = document.getElementById('loginPassword').value;
-  const errEl = document.getElementById('loginError');
-  errEl.textContent = '';
+  const errEl = document.getElementById('loginError'); errEl.textContent = '';
   if(!username || !password){ errEl.textContent = 'Username va parolni kiriting.'; return; }
   try{
     await auth.signInWithEmailAndPassword(usernameToEmail(username), password);
     const doc = await db.collection('users').doc(username).get();
     if(!doc.exists){ errEl.textContent = 'Profil topilmadi.'; return; }
     loginSuccess(doc.data());
-  }catch(e){
-    errEl.textContent = friendlyAuthError(e);
-  }
+  }catch(e){ errEl.textContent = friendlyAuthError(e); }
 }
+
 function friendlyAuthError(e){
   const code = e.code || '';
   if(code.includes('wrong-password') || code.includes('invalid-credential')) return "Parol noto'g'ri.";
   if(code.includes('user-not-found')) return 'Bunday akkaunt topilmadi.';
   if(code.includes('email-already-in-use')) return 'Bu username allaqachon band.';
-  if(code.includes('network-request-failed')) return "Internet aloqasi yo'q yoki Firebase config noto'g'ri.";
-  if(code.includes('api-key') || code.includes('invalid-api-key')) return "Firebase config to'g'ri kiritilmagan (koddagi firebaseConfig'ni tekshiring).";
   return 'Xatolik: ' + (e.message || code);
 }
 
@@ -600,21 +444,16 @@ async function loginSuccess(user){
   document.getElementById('authScreen').classList.add('hidden');
   document.getElementById('mainApp').classList.remove('hidden');
   await db.collection('presence').doc(user.username).set({online:true, ts: nowTs()});
-  presenceHeartbeat = setInterval(()=>{
-    db.collection('presence').doc(user.username).set({online:true, ts: nowTs()});
-  }, 20000);
-
+  presenceHeartbeat = setInterval(()=>{ db.collection('presence').doc(user.username).set({online:true, ts: nowTs()}); }, 20000);
   const notifDoc = localStorage.getItem('linktalk_notif_'+user.username);
-  if(notifDoc === null){
-    document.getElementById('notifModal').classList.remove('hidden');
-  } else {
-    notifEnabled = notifDoc === '1';
-  }
-  listenChatsList();
-  listenSignals();
-  window.addEventListener('beforeunload', ()=>{
-    db.collection('presence').doc(CURRENT_USER.username).set({online:false, ts:nowTs()});
-  });
+  if(notifDoc === null) document.getElementById('notifModal').classList.remove('hidden');
+  else notifEnabled = notifDoc === '1';
+  
+  if(localStorage.getItem('lt_theme') === 'light') applyThemeMode('light');
+  if(localStorage.getItem('lt_font')) applyFontMode(localStorage.getItem('lt_font'));
+
+  listenChatsList(); listenSignals();
+  window.addEventListener('beforeunload', ()=>{ db.collection('presence').doc(CURRENT_USER.username).set({online:false, ts:nowTs()}); });
 }
 
 auth.onAuthStateChanged(async (fbUser)=>{
@@ -627,330 +466,201 @@ auth.onAuthStateChanged(async (fbUser)=>{
 
 function doLogout(){
   if(CURRENT_USER) db.collection('presence').doc(CURRENT_USER.username).set({online:false, ts:nowTs()});
-  if(unsubMessages) unsubMessages();
-  if(unsubChatsList) unsubChatsList();
-  if(unsubPresence) unsubPresence();
-  if(unsubSignals) unsubSignals();
-  clearInterval(presenceHeartbeat);
-  auth.signOut().then(()=> location.reload());
+  if(unsubMessages) unsubMessages(); if(unsubChatsList) unsubChatsList(); if(unsubPresence) unsubPresence(); if(unsubSignals) unsubSignals();
+  clearInterval(presenceHeartbeat); auth.signOut().then(()=> location.reload());
 }
 
 function setNotif(val){
-  notifEnabled = val;
-  localStorage.setItem('linktalk_notif_'+CURRENT_USER.username, val ? '1':'0');
+  notifEnabled = val; localStorage.setItem('linktalk_notif_'+CURRENT_USER.username, val ? '1':'0');
   document.getElementById('notifModal').classList.add('hidden');
-  if(val && 'Notification' in window){
-    Notification.requestPermission().catch(()=>{});
-    showToast('🔔 Bildirishnomalar', "Endi yangi SMS va qo'ng'iroqlar haqida xabar berib turaman.");
-  }
+  if(val && 'Notification' in window){ Notification.requestPermission().catch(()=>{}); showToast('🔔 Bildirishnomalar', "Faollashtirildi."); }
 }
 
-/* =========================================================
-   TOAST / SOUND
-========================================================= */
 function showToast(title, body){
-  const zone = document.getElementById('toastZone');
-  const el = document.createElement('div');
-  el.className = 'toast';
+  const zone = document.getElementById('toastZone'); const el = document.createElement('div'); el.className = 'toast';
   el.innerHTML = `<div style="font-size:20px;">💬</div><div><div class="toast-title">${escapeHtml(title)}</div><div class="toast-body">${escapeHtml(body)}</div></div>`;
-  zone.appendChild(el);
-  setTimeout(()=>{ el.remove(); }, 4500);
-  if(notifEnabled) beep();
+  zone.appendChild(el); setTimeout(()=>{ el.remove(); }, 4500); if(notifEnabled) beep();
 }
+
 function beep(){
   try{
-    const ctx = new (window.AudioContext||window.webkitAudioContext)();
-    const o = ctx.createOscillator(); const g = ctx.createGain();
-    o.connect(g); g.connect(ctx.destination);
-    o.frequency.value = 720; g.gain.value = 0.06;
-    o.start(); setTimeout(()=>{ o.stop(); ctx.close(); }, 160);
+    const ctx = new (window.AudioContext||window.webkitAudioContext)(); const o = ctx.createOscillator(); const g = ctx.createGain();
+    o.connect(g); g.connect(ctx.destination); o.frequency.value = 720; g.gain.value = 0.06; o.start(); setTimeout(()=>{ o.stop(); ctx.close(); }, 160);
   }catch(e){}
 }
-function ringLoop(){
-  beep();
-  setTimeout(()=>{ if(document.getElementById('callOverlay').classList.contains('hidden')) return; beep(); }, 400);
-}
 
-/* =========================================================
-   NAV
-========================================================= */
+function ringLoop(){ beep(); setTimeout(()=>{ if(document.getElementById('callOverlay').classList.contains('hidden')) return; beep(); }, 400); }
+
 function setNav(which){
   document.getElementById('navChats').classList.toggle('active', which==='chats');
   document.getElementById('navProfile').classList.toggle('active', which==='profile');
   document.getElementById('navSettings').classList.toggle('active', which==='settings');
-  const searchRes = document.getElementById('searchResults');
-  const chatList = document.getElementById('chatListView');
-  const panel = document.getElementById('profilePanelEl');
+  const searchRes = document.getElementById('searchResults'), chatList = document.getElementById('chatListView'), panel = document.getElementById('profilePanelEl');
   if(which==='chats'){
-    panel.classList.add('hidden'); panel.classList.remove('open');
-    searchRes.classList.add('hidden'); chatList.classList.remove('hidden');
+    panel.classList.add('hidden'); panel.classList.remove('open'); searchRes.classList.add('hidden'); chatList.classList.remove('hidden');
   } else if(which==='profile'){
-    renderOwnProfile();
-    panel.classList.remove('hidden'); panel.classList.add('open');
+    renderOwnProfile(); panel.classList.remove('hidden'); panel.classList.add('open');
   } else if(which==='settings'){
-    renderSettings();
-    panel.classList.remove('hidden'); panel.classList.add('open');
+    renderSettings(); panel.classList.remove('hidden'); panel.classList.add('open');
   }
 }
 
-/* =========================================================
-   SEARCH USERS
-========================================================= */
-let searchTimer=null;
-function onSearch(){ clearTimeout(searchTimer); searchTimer = setTimeout(doSearch, 250); }
 async function doSearch(){
   const q = document.getElementById('searchInput').value.trim().toLowerCase();
-  const resBox = document.getElementById('searchResults');
-  const chatList = document.getElementById('chatListView');
+  const resBox = document.getElementById('searchResults'), chatList = document.getElementById('chatListView');
   if(!q){ resBox.classList.add('hidden'); chatList.classList.remove('hidden'); return; }
-  const snap = await db.collection('users').limit(200).get();
-  const matches = [];
+  const snap = await db.collection('users').limit(200).get(); const matches = [];
   snap.forEach(doc=>{
-    const u = doc.data();
-    if(u.username === CURRENT_USER.username) return;
+    const u = doc.data(); if(u.username === CURRENT_USER.username) return;
     if(u.username.includes(q) || u.id.toLowerCase().includes(q) || u.name.toLowerCase().includes(q)) matches.push(u);
   });
   resBox.innerHTML = '';
-  if(matches.length===0){
-    resBox.innerHTML = '<div class="chat-empty-hint">Hech kim topilmadi</div>';
-  } else {
+  if(matches.length===0){ resBox.innerHTML = '<div class="chat-empty-hint">Hech kim topilmadi</div>'; }
+  else {
     matches.slice(0,15).forEach(u=>{
-      CONTACTS_CACHE[u.username] = u;
-      const row = document.createElement('div');
-      row.className = 'user-row';
-      row.style.cursor='pointer';
+      CONTACTS_CACHE[u.username] = u; const row = document.createElement('div'); row.className = 'user-row'; row.style.cursor='pointer';
       row.innerHTML = avatarHtml(u) + `<div class="user-meta"><div class="user-name">${escapeHtml(u.name)}</div><div class="user-id">@${escapeHtml(u.username)} · ${escapeHtml(u.id)}</div></div>`;
       row.onclick = ()=>{ document.getElementById('searchInput').value=''; resBox.classList.add('hidden'); chatList.classList.remove('hidden'); openChat(u.username); };
       resBox.appendChild(row);
     });
   }
-  resBox.classList.remove('hidden');
-  chatList.classList.add('hidden');
+  resBox.classList.remove('hidden'); chatList.classList.add('hidden');
 }
+function onSearch(){ clearTimeout(searchTimer); searchTimer = setTimeout(doSearch, 250); }
+let searchTimer=null;
+
 function avatarHtml(u, big){
   const cls = big ? 'avatar big' : 'avatar';
   if(u && u.avatar){ return `<img class="${cls}" src="${u.avatar}">`; }
   return `<div class="${cls}">${escapeHtml(initials(u?u.name:'?'))}</div>`;
 }
 
-/* =========================================================
-   CHAT LIST (real-time)
-========================================================= */
 function listenChatsList(){
   if(unsubChatsList) unsubChatsList();
-  unsubChatsList = db.collection('chats')
-    .where('participants', 'array-contains', CURRENT_USER.username)
+  unsubChatsList = db.collection('chats').where('participants', 'array-contains', CURRENT_USER.username)
     .onSnapshot(async (snap)=>{
       const rows = [];
       for(const doc of snap.docs){
-        const data = doc.data();
-        const otherUsername = data.participants.find(p=>p!==CURRENT_USER.username);
+        const data = doc.data(), otherUsername = data.participants.find(p=>p!==CURRENT_USER.username);
         let u = CONTACTS_CACHE[otherUsername];
-        if(!u){
-          const udoc = await db.collection('users').doc(otherUsername).get();
-          if(udoc.exists){ u = udoc.data(); CONTACTS_CACHE[otherUsername]=u; }
-        }
+        if(!u){ const udoc = await db.collection('users').doc(otherUsername).get(); if(udoc.exists){ u = udoc.data(); CONTACTS_CACHE[otherUsername]=u; } }
         if(u) rows.push({u, lastMessage:data.lastMessage, lastTs:data.lastTs, lastFrom:data.lastFrom});
       }
       rows.sort((a,b)=> (b.lastTs||0)-(a.lastTs||0));
       const listEl = document.getElementById('chatListView');
-      if(rows.length===0){
-        listEl.innerHTML = "<div class=\"chat-empty-hint\">Hali suhbatlar yo'q.<br>Yuqoridan odam qidirib, yozishishni boshlang 👋</div>";
-        return;
-      }
+      if(rows.length===0){ listEl.innerHTML = "<div class=\"chat-empty-hint\">Hali suhbatlar yo'q.</div>"; return; }
       listEl.innerHTML = '';
       rows.forEach(({u,lastMessage,lastTs,lastFrom})=>{
-        const row = document.createElement('div');
-        row.className = 'chat-row' + (ACTIVE_CONTACT===u.username ? ' active':'');
-        let lastText = lastMessage || 'Suhbatni boshlang';
-        if(lastFrom===CURRENT_USER.username && lastMessage) lastText = 'Siz: '+lastText;
+        const row = document.createElement('div'); row.className = 'chat-row' + (ACTIVE_CONTACT===u.username ? ' active':'');
+        let lastText = lastMessage || 'Suhbatni boshlang'; if(lastFrom===CURRENT_USER.username && lastMessage) lastText = 'Siz: '+lastText;
         row.innerHTML = avatarHtml(u) + `<div class="chat-row-meta"><div class="chat-row-top"><div class="chat-row-name">${escapeHtml(u.name)}</div><div class="chat-row-time">${lastTs?fmtTime(lastTs):''}</div></div><div class="chat-row-last">${escapeHtml(lastText)}</div></div>`;
-        row.onclick = ()=> openChat(u.username);
-        listEl.appendChild(row);
+        row.onclick = ()=> openChat(u.username); listEl.appendChild(row);
       });
-    }, err=>{ console.error(err); });
+    });
 }
 
-/* =========================================================
-   OPEN CHAT / MESSAGES (real-time)
-========================================================= */
 async function openChat(username){
-  ACTIVE_CONTACT = username;
-  const chatId = pairKey(CURRENT_USER.username, username);
-  await db.collection('chats').doc(chatId).set({
-    participants: [CURRENT_USER.username, username]
-  }, {merge:true});
-
+  ACTIVE_CONTACT = username; const chatId = pairKey(CURRENT_USER.username, username);
+  await db.collection('chats').doc(chatId).set({ participants: [CURRENT_USER.username, username] }, {merge:true});
   let u = CONTACTS_CACHE[username];
-  if(!u){
-    const doc = await db.collection('users').doc(username).get();
-    u = doc.data(); CONTACTS_CACHE[username]=u;
-  }
-  document.getElementById('chatWelcome').classList.add('hidden');
-  document.getElementById('chatActive').classList.remove('hidden');
-  const headerAv = document.getElementById('chatHeaderAvatar');
-  headerAv.outerHTML = avatarHtml(u).replace('class="avatar"','class="avatar" id="chatHeaderAvatar"');
-  document.getElementById('chatHeaderName').textContent = u.name;
-  document.getElementById('chatHeaderStatus').textContent = 'ID: '+u.id;
+  if(!u){ const doc = await db.collection('users').doc(username).get(); u = doc.data(); CONTACTS_CACHE[username]=u; }
+  document.getElementById('chatWelcome').classList.add('hidden'); document.getElementById('chatActive').classList.remove('hidden');
+  const headerAv = document.getElementById('chatHeaderAvatar'); headerAv.outerHTML = avatarHtml(u).replace('class="avatar"','class="avatar" id="chatHeaderAvatar"');
+  document.getElementById('chatHeaderName').textContent = u.name; document.getElementById('chatHeaderStatus').textContent = 'ID: '+u.id;
 
   if(unsubPresence) unsubPresence();
   unsubPresence = db.collection('presence').doc(username).onSnapshot(doc=>{
-    const statusEl = document.getElementById('chatHeaderStatus');
-    if(!statusEl) return;
-    const pres = doc.data();
-    const isOnline = pres && pres.online && (nowTs() - pres.ts < 40000);
+    const statusEl = document.getElementById('chatHeaderStatus'); if(!statusEl) return;
+    const pres = doc.data(), isOnline = pres && pres.online && (nowTs() - pres.ts < 40000);
     if(isOnline){ statusEl.textContent = 'onlayn'; statusEl.classList.add('online'); }
     else { statusEl.textContent = 'ID: '+u.id; statusEl.classList.remove('online'); }
   });
 
   if(unsubMessages) unsubMessages();
-  const view = document.getElementById('messagesView');
-  view.innerHTML = '';
-  let firstLoad = true;
-  unsubMessages = db.collection('chats').doc(chatId).collection('messages')
-    .orderBy('ts', 'asc')
+  const view = document.getElementById('messagesView'); view.innerHTML = ''; let firstLoad = true;
+  unsubMessages = db.collection('chats').doc(chatId).collection('messages').orderBy('ts', 'asc')
     .onSnapshot(snap=>{
       snap.docChanges().forEach(change=>{
         if(change.type==='added'){
-          const m = change.doc.data();
-          appendMessageBubble(m);
-          if(!firstLoad && m.from !== CURRENT_USER.username){
-            showToast('💬 '+u.name, m.type==='text'?m.content: (m.type==='image'?'📷 Rasm':'🎥 Video'));
-          }
+          appendMessageBubble(change.doc.data(), change.doc.id, chatId);
+          if(!firstLoad && change.doc.data().from !== CURRENT_USER.username){ showToast('💬 '+u.name, change.doc.data().type==='text'?change.doc.data().content: 'Fayl keldi'); }
+        } else if(change.type==='removed') {
+          const removedEl = document.getElementById('msg_'+change.doc.id); if(removedEl) removedEl.remove();
         }
       });
-      firstLoad = false;
-      view.scrollTop = view.scrollHeight;
+      firstLoad = false; view.scrollTop = view.scrollHeight;
     });
 
-  if(window.innerWidth <= 700){
-    document.getElementById('sidebarEl').classList.add('chat-open');
-    document.getElementById('chatPanelEl').classList.add('open');
-  }
-}
-function closeChatMobile(){
-  document.getElementById('sidebarEl').classList.remove('chat-open');
-  document.getElementById('chatPanelEl').classList.remove('open');
+  if(window.innerWidth <= 700){ document.getElementById('sidebarEl').classList.add('chat-open'); document.getElementById('chatPanelEl').classList.add('open'); }
 }
 
-function appendMessageBubble(m){
-  const view = document.getElementById('messagesView');
-  const row = document.createElement('div');
-  row.className = 'msg-row ' + (m.from===CURRENT_USER.username ? 'me':'them');
+function closeChatMobile(){ document.getElementById('sidebarEl').classList.remove('chat-open'); document.getElementById('chatPanelEl').classList.remove('open'); ACTIVE_CONTACT = null; }
+function closePanelMobile(){ const p = document.getElementById('profilePanelEl'); p.classList.add('hidden'); p.classList.remove('open'); }
+
+function appendMessageBubble(m, docId, chatId){
+  const view = document.getElementById('messagesView'); const row = document.createElement('div');
+  row.className = 'msg-row ' + (m.from===CURRENT_USER.username ? 'me':'them'); row.id = 'msg_' + docId;
   let inner = '';
   if(m.type==='text'){ inner = `<div class="bubble">${escapeHtml(m.content)}<span class="msg-time">${fmtTime(m.ts)}</span></div>`; }
   else if(m.type==='emoji'){ inner = `<div class="bubble msg-emoji-only">${m.content}</div>`; }
   else if(m.type==='image'){ inner = `<div class="bubble"><img src="${m.content}"><span class="msg-time">${fmtTime(m.ts)}</span></div>`; }
   else if(m.type==='video'){ inner = `<div class="bubble"><video src="${m.content}" controls></video><span class="msg-time">${fmtTime(m.ts)}</span></div>`; }
-  row.innerHTML = inner;
+  
+  let delBtn = `<button class="msg-del-btn" title="O'chirish" onclick="deleteMessage('${chatId}','${docId}')">🗑️</button>`;
+  row.innerHTML = m.from===CURRENT_USER.username ? delBtn + inner : inner + delBtn;
   view.appendChild(row);
 }
 
+async function deleteMessage(chatId, docId) {
+  try { await db.collection('chats').doc(chatId).collection('messages').doc(docId).delete(); } catch(e) {}
+}
+
 async function pushMessage(type, content){
-  if(!ACTIVE_CONTACT) return;
-  const chatId = pairKey(CURRENT_USER.username, ACTIVE_CONTACT);
-  const ts = nowTs();
+  if(!ACTIVE_CONTACT) return; const chatId = pairKey(CURRENT_USER.username, ACTIVE_CONTACT); const ts = nowTs();
   await db.collection('chats').doc(chatId).collection('messages').add({from: CURRENT_USER.username, type, content, ts});
-  let preview = content;
-  if(type==='image') preview = '📷 Rasm';
-  if(type==='video') preview = '🎥 Video';
-  await db.collection('chats').doc(chatId).set({
-    participants:[CURRENT_USER.username, ACTIVE_CONTACT],
-    lastMessage: preview, lastTs: ts, lastFrom: CURRENT_USER.username
-  }, {merge:true});
+  let preview = content; if(type==='image') preview = '📷 Rasm'; if(type==='video') preview = '🎥 Video';
+  await db.collection('chats').doc(chatId).set({ participants:[CURRENT_USER.username, ACTIVE_CONTACT], lastMessage: preview, lastTs: ts, lastFrom: CURRENT_USER.username }, {merge:true});
 }
 
 function onComposerKey(e){ if(e.key==='Enter' && !e.shiftKey){ e.preventDefault(); sendTextMessage(); } }
-async function sendTextMessage(){
-  const input = document.getElementById('msgInput');
-  const text = input.value.trim();
-  if(!text) return;
-  input.value='';
-  await pushMessage('text', text);
-}
+async function sendTextMessage(){ const input = document.getElementById('msgInput'); const text = input.value.trim(); if(!text) return; input.value=''; await pushMessage('text', text); }
 
-/* emoji picker */
 const EMOJIS = ['😀','😂','😍','😘','😎','🤔','😢','😭','😡','🥳','👍','👎','🙏','👏','🔥','❤️','💔','⭐','🎉','😴','😅','🤗','😇','🙄','😱','🤩','🥰','😜','🤝','👌'];
 function toggleEmoji(){
   const panel = document.getElementById('emojiPanel');
-  if(panel.classList.contains('hidden')){
-    panel.innerHTML = EMOJIS.map(e=>`<button onclick="pickEmoji('${e}')">${e}</button>`).join('');
-    panel.classList.remove('hidden');
-  } else { panel.classList.add('hidden'); }
+  if(panel.classList.contains('hidden')){ panel.innerHTML = EMOJIS.map(e=>`<button onclick="pickEmoji('${e}')">${e}</button>`).join(''); panel.classList.remove('hidden'); }
+  else { panel.classList.add('hidden'); }
 }
 function pickEmoji(e){ document.getElementById('msgInput').value += e; document.getElementById('msgInput').focus(); }
-document.addEventListener('click', (ev)=>{
-  const panel = document.getElementById('emojiPanel');
-  if(!panel) return;
-  if(!panel.classList.contains('hidden') && !panel.contains(ev.target) && ev.target.closest('.composer-btn')===null){
-    panel.classList.add('hidden');
-  }
-});
+document.addEventListener('click', (ev)=>{ const panel = document.getElementById('emojiPanel'); if(!panel) return; if(!panel.classList.contains('hidden') && !panel.contains(ev.target) && ev.target.closest('.composer-btn')===null){ panel.classList.add('hidden'); } });
 
-/* image sending — compressed to stay well under Firestore's 1MB doc limit */
-function onImagePicked(ev){
-  const file = ev.target.files[0];
-  if(!file) return;
-  compressImageFile(file, dataUrl=>{ pushMessage('image', dataUrl); }, 480, 0.6);
-  ev.target.value = '';
-}
+function onImagePicked(ev){ const file = ev.target.files[0]; if(!file) return; compressImageFile(file, dataUrl=>{ pushMessage('image', dataUrl); }, 480, 0.6); ev.target.value = ''; }
 function compressImageFile(file, cb, maxW, quality){
-  const img = new Image();
-  const reader = new FileReader();
-  reader.onload = e=>{
-    img.onload = ()=>{
-      const scale = Math.min(1, maxW/img.width);
-      const canvas = document.createElement('canvas');
-      canvas.width = img.width*scale; canvas.height = img.height*scale;
-      const ctx = canvas.getContext('2d');
-      ctx.drawImage(img,0,0,canvas.width,canvas.height);
-      cb(canvas.toDataURL('image/jpeg', quality));
-    };
-    img.src = e.target.result;
-  };
+  const img = new Image(); const reader = new FileReader();
+  reader.onload = e=>{ img.onload = ()=>{ const scale = Math.min(1, maxW/img.width); const canvas = document.createElement('canvas'); canvas.width = img.width*scale; canvas.height = img.height*scale; const ctx = canvas.getContext('2d'); ctx.drawImage(img,0,0,canvas.width,canvas.height); cb(canvas.toDataURL('image/jpeg', quality)); }; img.src = e.target.result; };
   reader.readAsDataURL(file);
 }
 
-/* short video recording (max 4s, low-res — Firestore doc limit is 1MB) */
 async function toggleVideoRecord(){
-  const btn = document.getElementById('videoRecBtn');
   if(isRecordingVideo) return;
   try{
-    const stream = await navigator.mediaDevices.getUserMedia({video:{width:256,height:192}, audio:true});
-    isRecordingVideo = true;
-    recordedChunks = [];
-    btn.style.color = 'var(--danger)';
-    mediaRecorder = new MediaRecorder(stream, {mimeType:'video/webm', videoBitsPerSecond:150000});
+    const stream = await navigator.mediaDevices.getUserMedia({video:{width:256,height:192}, audio:true}); isRecordingVideo = true; recordedChunks = [];
+    document.getElementById('videoRecBtn').style.color = 'var(--danger)'; mediaRecorder = new MediaRecorder(stream, {mimeType:'video/webm', videoBitsPerSecond:150000});
     mediaRecorder.ondataavailable = e=>{ if(e.data.size>0) recordedChunks.push(e.data); };
     mediaRecorder.onstop = ()=>{
-      stream.getTracks().forEach(t=>t.stop());
-      btn.style.color = '';
-      isRecordingVideo = false;
-      const blob = new Blob(recordedChunks, {type:'video/webm'});
-      if(blob.size > 700*1024){
-        showToast('Video juda katta', "Iltimos, qisqaroq video yozib ko'ring (3-4 soniya).");
-        return;
-      }
-      const reader = new FileReader();
-      reader.onload = e=>{ pushMessage('video', e.target.result); };
-      reader.readAsDataURL(blob);
+      stream.getTracks().forEach(t=>t.stop()); document.getElementById('videoRecBtn').style.color = ''; isRecordingVideo = false;
+      const blob = new Blob(recordedChunks, {type:'video/webm'}); if(blob.size > 700*1024) return;
+      const reader = new FileReader(); reader.onload = e=>{ pushMessage('video', e.target.result); }; reader.readAsDataURL(blob);
     };
-    mediaRecorder.start();
-    showToast('🎥 Video yozilmoqda', "4 soniya ichida avtomatik to'xtaydi...");
-    setTimeout(()=>{ if(mediaRecorder && mediaRecorder.state==='recording') mediaRecorder.stop(); }, 4000);
-  }catch(e){
-    showToast('Kamera xatosi', 'Kameraga ruxsat berilmadi yoki topilmadi.');
-  }
+    mediaRecorder.start(); setTimeout(()=>{ if(mediaRecorder && mediaRecorder.state==='recording') mediaRecorder.stop(); }, 4000);
+  }catch(e){}
 }
 
-/* =========================================================
-   PROFILE
-========================================================= */
 function renderOwnProfile(){
-  const p = document.getElementById('profilePanelEl');
-  const u = CURRENT_USER;
+  const p = document.getElementById('profilePanelEl'), u = CURRENT_USER;
   p.innerHTML = `
     <div class="profile-header">
+      <button class="icon-btn back-btn" style="position:absolute; left:14px; top:14px; display:flex;" onclick="closePanelMobile()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 18l-6-6 6-6"/></svg></button>
       ${avatarHtml(u, true)}
       <div class="profile-name">${escapeHtml(u.name)}</div>
       <div class="profile-id">@${escapeHtml(u.username)} · ${escapeHtml(u.id)}</div>
@@ -968,232 +678,130 @@ function renderOwnProfile(){
       <div class="gallery-grid" id="galleryGrid"><div class="upload-tile" onclick="document.getElementById('galleryInput').click()">+</div></div>
       <input type="file" id="galleryInput" accept="image/*" class="hidden" onchange="onGalleryPicked(event)">
     </div>
-    <div class="profile-section">
-      <button class="logout-btn" onclick="doLogout()">Chiqish</button>
-    </div>
+    <div class="profile-section"><button class="logout-btn" onclick="doLogout()">Chiqish</button></div>
   `;
   loadGallery(u.username, true);
 }
-async function saveBio(){
-  CURRENT_USER.bio = document.getElementById('bioInput').value.trim();
-  await db.collection('users').doc(CURRENT_USER.username).set({bio:CURRENT_USER.bio}, {merge:true});
-  showToast('Saqlandi', 'Bio yangilandi.');
-}
-async function onAvatarPicked(ev){
-  const file = ev.target.files[0]; if(!file) return;
-  compressImageFile(file, async dataUrl=>{
-    CURRENT_USER.avatar = dataUrl;
-    await db.collection('users').doc(CURRENT_USER.username).set({avatar:dataUrl}, {merge:true});
-    renderOwnProfile();
-    if(ACTIVE_CONTACT) openChat(ACTIVE_CONTACT);
-  }, 300, 0.6);
-  ev.target.value='';
-}
-async function onGalleryPicked(ev){
-  const file = ev.target.files[0]; if(!file) return;
-  compressImageFile(file, async dataUrl=>{
-    await db.collection('users').doc(CURRENT_USER.username).collection('gallery').add({image:dataUrl, ts:nowTs()});
-    loadGallery(CURRENT_USER.username, true);
-  }, 500, 0.55);
-  ev.target.value='';
-}
+
+async function saveBio(){ CURRENT_USER.bio = document.getElementById('bioInput').value.trim(); await db.collection('users').doc(CURRENT_USER.username).set({bio:CURRENT_USER.bio}, {merge:true}); showToast('Saqlandi', 'Yangilandi.'); }
+async function onAvatarPicked(ev){ const file = ev.target.files[0]; if(!file) return; compressImageFile(file, async dataUrl=>{ CURRENT_USER.avatar = dataUrl; await db.collection('users').doc(CURRENT_USER.username).set({avatar:dataUrl}, {merge:true}); renderOwnProfile(); if(ACTIVE_CONTACT) openChat(ACTIVE_CONTACT); }, 300, 0.6); ev.target.value=''; }
+async function onGalleryPicked(ev){ const file = ev.target.files[0]; if(!file) return; compressImageFile(file, async dataUrl=>{ await db.collection('users').doc(CURRENT_USER.username).collection('gallery').add({image:dataUrl, ts:nowTs()}); loadGallery(CURRENT_USER.username, true); }, 500, 0.55); ev.target.value=''; }
+
 async function loadGallery(username, editable){
-  const snap = await db.collection('users').doc(username).collection('gallery').orderBy('ts','desc').limit(12).get();
-  const grid = document.getElementById('galleryGrid');
-  if(!grid) return;
-  let html = '';
-  snap.forEach(doc=>{ html += `<img src="${doc.data().image}">`; });
-  if(editable) html += '<div class="upload-tile" onclick="document.getElementById(\'galleryInput\').click()">+</div>';
+  const snap = await db.collection('users').doc(username).collection('gallery').orderBy('ts','desc').limit(12).get(); const grid = document.getElementById('galleryGrid'); if(!grid) return;
+  let html = ''; snap.forEach(doc=>{ html += `<img src="${doc.data().image}">`; }); if(editable) html += '<div class="upload-tile" onclick="document.getElementById(\'galleryInput\').click()">+</div>';
   grid.innerHTML = html || '<div style="color:var(--text-dim); font-size:12px;">Rasmlar yo\'q</div>';
 }
 
 async function openContactProfile(){
-  const u = CONTACTS_CACHE[ACTIVE_CONTACT] || (await db.collection('users').doc(ACTIVE_CONTACT).get()).data();
-  const p = document.getElementById('profilePanelEl');
+  const u = CONTACTS_CACHE[ACTIVE_CONTACT] || (await db.collection('users').doc(ACTIVE_CONTACT).get()).data(); const p = document.getElementById('profilePanelEl');
   p.innerHTML = `
     <div class="profile-header">
+      <button class="icon-btn back-btn" style="position:absolute; left:14px; top:14px; display:flex;" onclick="closePanelMobile()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 18l-6-6 6-6"/></svg></button>
       ${avatarHtml(u, true)}
       <div class="profile-name">${escapeHtml(u.name)}</div>
       <div class="profile-id">@${escapeHtml(u.username)} · ${escapeHtml(u.id)}</div>
       <div class="profile-bio">${escapeHtml(u.bio||"Bio yo'q")}</div>
     </div>
-    <div class="profile-section">
-      <h4>Rasmlar</h4>
-      <div class="gallery-grid" id="galleryGrid"></div>
-    </div>
+    <div class="profile-section"><h4>Rasmlar</h4><div class="gallery-grid" id="galleryGrid"></div></div>
   `;
-  p.classList.remove('hidden'); p.classList.add('open');
-  loadGallery(u.username, false);
+  p.classList.remove('hidden'); p.classList.add('open'); loadGallery(u.username, false);
 }
 
 function renderSettings(){
   const p = document.getElementById('profilePanelEl');
   p.innerHTML = `
-    <div class="profile-header" style="text-align:left;">
+    <div class="profile-header" style="text-align:left; padding-left:55px;">
+      <button class="icon-btn back-btn" style="position:absolute; left:14px; top:14px; display:flex;" onclick="closePanelMobile()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 18l-6-6 6-6"/></svg></button>
       <div class="profile-name" style="margin-top:0;">Sozlamalar</div>
     </div>
     <div class="profile-section">
       <div class="settings-row">
-        <div><div class="settings-row-label">Bildirishnomalar</div><div class="settings-row-sub">SMS va qo'ng'iroqlar haqida xabar</div></div>
+        <div><div class="settings-row-label">Bildirishnomalar</div><div class="settings-row-sub">SMS va qo'ng'iroqlar</div></div>
         <div class="switch ${notifEnabled?'on':''}" onclick="toggleNotifSwitch()"></div>
+      </div>
+    </div>
+    <div class="profile-section">
+      <h4>Mavzu (Stil)</h4>
+      <div class="theme-selector">
+        <button class="selector-btn ${currentAppTheme==='dark'?'active':''}" onclick="applyThemeMode('dark')">To'q rang</button>
+        <button class="selector-btn ${currentAppTheme==='light'?'active':''}" onclick="applyThemeMode('light')">Yorqin rang</button>
+      </div>
+    </div>
+    <div class="profile-section">
+      <h4>Shrift o'lchami</h4>
+      <div class="font-selector">
+        <button class="selector-btn ${currentAppFont==='small'?'active':''}" onclick="applyFontMode('small')">Kichik</button>
+        <button class="selector-btn ${currentAppFont==='medium'?'active':''}" onclick="applyFontMode('medium')">O'rta</button>
+        <button class="selector-btn ${currentAppFont==='big'?'active':''}" onclick="applyFontMode('big')">Katta</button>
       </div>
     </div>
     <div class="profile-section">
       <h4>Akkaunt</h4>
       <div style="font-size:13px; color:var(--text-muted); line-height:1.7;">
-        Username: <b style="color:var(--text)">@${escapeHtml(CURRENT_USER.username)}</b><br>
-        ID: <b style="color:var(--accent2)">${escapeHtml(CURRENT_USER.id)}</b><br>
-        Boshqalar sizni shu username yoki ID orqali topa oladi.
+        Username: <b style="color:var(--text)">@${escapeHtml(CURRENT_USER.username)}</b><br> ID: <b style="color:var(--accent2)">${escapeHtml(CURRENT_USER.id)}</b>
       </div>
     </div>
-    <div class="profile-section">
-      <button class="logout-btn" onclick="doLogout()">Chiqish</button>
-    </div>
+    <div class="profile-section"><button class="logout-btn" onclick="doLogout()">Chiqish</button></div>
   `;
 }
-function toggleNotifSwitch(){
-  notifEnabled = !notifEnabled;
-  localStorage.setItem('linktalk_notif_'+CURRENT_USER.username, notifEnabled?'1':'0');
-  if(notifEnabled && 'Notification' in window) Notification.requestPermission().catch(()=>{});
-  renderSettings();
-}
 
-/* =========================================================
-   CALLING — real-time signaling via Firestore onSnapshot (WebRTC)
-========================================================= */
+function applyThemeMode(m){ currentAppTheme = m; document.documentElement.classList.toggle('light-mode', m==='light'); localStorage.setItem('lt_theme', m); if(ACTIVE_CONTACT && document.getElementById('navSettings').classList.contains('active')) renderSettings(); }
+function applyFontMode(f){ currentAppFont = f; let sz = f==='small'?'12.5px':f==='big'?'17px':'14.5px'; document.documentElement.style.setProperty('--base-font', sz); localStorage.setItem('lt_font', f); if(ACTIVE_CONTACT && document.getElementById('navSettings').classList.contains('active')) renderSettings(); }
+function toggleNotifSwitch(){ notifEnabled = !notifEnabled; localStorage.setItem('linktalk_notif_'+CURRENT_USER.username, notifEnabled?'1':'0'); if(notifEnabled && 'Notification' in window) Notification.requestPermission().catch(()=>{}); renderSettings(); }
+
 function listenSignals(){
   if(unsubSignals) unsubSignals();
-  unsubSignals = db.collection('signals')
-    .where('to', '==', CURRENT_USER.username)
+  unsubSignals = db.collection('signals').where('to', '==', CURRENT_USER.username)
     .onSnapshot(snap=>{
       snap.docChanges().forEach(async change=>{
-        if(change.type!=='added') return;
-        const sig = change.doc.data();
-        const docRef = change.doc.ref;
-        if(sig.type==='call-offer' && !pc){
-          showIncomingCall(sig.from, sig.video, JSON.parse(sig.payload));
-        } else if(sig.type==='call-answer' && pc){
-          await pc.setRemoteDescription(new RTCSessionDescription(JSON.parse(sig.payload)));
-          document.getElementById('callStatus').textContent = 'Ulandi';
-          document.getElementById('callStatus').classList.remove('ringing');
-        } else if(sig.type==='ice' && pc){
-          try{ await pc.addIceCandidate(new RTCIceCandidate(JSON.parse(sig.payload))); }catch(e){}
-        } else if(sig.type==='call-reject'){
-          showToast("Qo'ng'iroq", "Suhbatdosh javob bermadi.");
-          endCall(true);
-        } else if(sig.type==='call-end'){
-          endCall(true);
-        }
+        if(change.type!=='added') return; const sig = change.doc.data(), docRef = change.doc.ref;
+        if(sig.type==='call-offer' && !pc){ showIncomingCall(sig.from, sig.video, JSON.parse(sig.payload)); }
+        else if(sig.type==='call-answer' && pc){ await pc.setRemoteDescription(new RTCSessionDescription(JSON.parse(sig.payload))); document.getElementById('callStatus').textContent = 'Ulandi'; document.getElementById('callStatus').classList.remove('ringing'); }
+        else if(sig.type==='ice' && pc){ try{ await pc.addIceCandidate(new RTCIceCandidate(JSON.parse(sig.payload))); }catch(e){} }
+        else if(sig.type==='call-reject'){ showToast("Qo'ng'iroq", "Rad etildi."); endCall(true); }
+        else if(sig.type==='call-end'){ endCall(true); }
         docRef.delete().catch(()=>{});
       });
     });
 }
-async function pushSignal(toUser, type, video, payload){
-  await db.collection('signals').add({
-    to: toUser, from: CURRENT_USER.username, type, video: !!video,
-    payload: payload ? JSON.stringify(payload) : null, createdAt: nowTs()
-  });
-}
-
-function createPeerConnection(remoteUsername){
-  const conn = new RTCPeerConnection({iceServers:[{urls:'stun:stun.l.google.com:19302'}]});
-  conn.onicecandidate = e=>{ if(e.candidate) pushSignal(remoteUsername, 'ice', false, e.candidate); };
-  conn.ontrack = e=>{ document.getElementById('remoteVideo').srcObject = e.streams[0]; };
-  return conn;
-}
+async function pushSignal(toUser, type, video, payload){ await db.collection('signals').add({ to: toUser, from: CURRENT_USER.username, type, video: !!video, payload: payload ? JSON.stringify(payload) : null, createdAt: nowTs() }); }
+function createPeerConnection(remoteUsername){ const conn = new RTCPeerConnection({iceServers:[{urls:'stun:stun.l.google.com:19302'}]}); conn.onicecandidate = e=>{ if(e.candidate) pushSignal(remoteUsername, 'ice', false, e.candidate); }; conn.ontrack = e=>{ document.getElementById('remoteVideo').srcObject = e.streams[0]; }; return conn; }
 
 async function startCall(video){
-  if(!ACTIVE_CONTACT) return;
-  callTargetUser = ACTIVE_CONTACT;
-  inCallVideo = video;
-  const u = CONTACTS_CACHE[ACTIVE_CONTACT];
-  document.getElementById('callOverlay').classList.remove('hidden');
-  const av = document.getElementById('callAvatar');
-  av.outerHTML = avatarHtml(u, true).replace('class="avatar big"','class="avatar big" id="callAvatar"');
-  document.getElementById('callName').textContent = u.name;
-  document.getElementById('callStatus').textContent = 'Chaqirilmoqda...';
-  document.getElementById('callStatus').classList.add('ringing');
-  document.getElementById('callControlsOutgoing').classList.remove('hidden');
-  document.getElementById('callControlsIncoming').classList.add('hidden');
-  document.getElementById('incomingBadge').classList.add('hidden');
-  document.getElementById('localVideo').classList.toggle('hidden', !video);
-
-  try{ mediaStream = await navigator.mediaDevices.getUserMedia({video, audio:true}); }
-  catch(e){ showToast('Kamera/mikrofon xatosi', 'Ruxsat berilmadi.'); endCall(); return; }
-  document.getElementById('localVideo').srcObject = mediaStream;
-  pc = createPeerConnection(callTargetUser);
-  mediaStream.getTracks().forEach(t=> pc.addTrack(t, mediaStream));
-  const offer = await pc.createOffer();
-  await pc.setLocalDescription(offer);
-  await pushSignal(callTargetUser, 'call-offer', video, offer);
-  showToast('📞 Qo\'ng\'iroq', u.name+"ga qo'ng'iroq qilinmoqda...");
+  if(!ACTIVE_CONTACT) return; callTargetUser = ACTIVE_CONTACT; inCallVideo = video; const u = CONTACTS_CACHE[ACTIVE_CONTACT]; document.getElementById('callOverlay').classList.remove('hidden');
+  const av = document.getElementById('callAvatar'); av.outerHTML = avatarHtml(u, true).replace('class="avatar big"','class="avatar big" id="callAvatar"');
+  document.getElementById('callName').textContent = u.name; document.getElementById('callStatus').textContent = 'Chaqirilmoqda...'; document.getElementById('callStatus').classList.add('ringing');
+  document.getElementById('callControlsOutgoing').classList.remove('hidden'); document.getElementById('callControlsIncoming').classList.add('hidden'); document.getElementById('incomingBadge').classList.add('hidden'); document.getElementById('localVideo').classList.toggle('hidden', !video);
+  try{ mediaStream = await navigator.mediaDevices.getUserMedia({video, audio:true}); } catch(e){ endCall(); return; }
+  document.getElementById('localVideo').srcObject = mediaStream; pc = createPeerConnection(callTargetUser); mediaStream.getTracks().forEach(t=> pc.addTrack(t, mediaStream));
+  const offer = await pc.createOffer(); await pc.setLocalDescription(offer); await pushSignal(callTargetUser, 'call-offer', video, offer);
 }
 
 function showIncomingCall(fromUsername, video, sdp){
-  callTargetUser = fromUsername;
-  inCallVideo = video;
-  window.__incomingSdp = sdp;
-  const u = CONTACTS_CACHE[fromUsername];
-  document.getElementById('callOverlay').classList.remove('hidden');
-  const av = document.getElementById('callAvatar');
-  av.outerHTML = (u?avatarHtml(u,true):'<div class="avatar big">?</div>').replace('class="avatar big"','class="avatar big" id="callAvatar"');
-  document.getElementById('callName').textContent = u ? u.name : fromUsername;
-  document.getElementById('callStatus').textContent = video? "Video qo'ng'iroq..." : "Ovozli qo'ng'iroq...";
-  document.getElementById('callStatus').classList.add('ringing');
-  document.getElementById('incomingBadge').classList.remove('hidden');
-  document.getElementById('callControlsOutgoing').classList.add('hidden');
-  document.getElementById('callControlsIncoming').classList.remove('hidden');
-  if(notifEnabled){ ringLoop(); showToast("📞 Kiruvchi qo'ng'iroq", (u?u.name:fromUsername)+" qo'ng'iroq qilmoqda"); }
+  callTargetUser = fromUsername; inCallVideo = video; window.__incomingSdp = sdp; const u = CONTACTS_CACHE[fromUsername]; document.getElementById('callOverlay').classList.remove('hidden');
+  const av = document.getElementById('callAvatar'); av.outerHTML = (u?avatarHtml(u,true):'<div class="avatar big">?</div>').replace('class="avatar big"','class="avatar big" id="callAvatar"');
+  document.getElementById('callName').textContent = u ? u.name : fromUsername; document.getElementById('callStatus').textContent = video? "Video..." : "Ovozli..."; document.getElementById('callStatus').classList.add('ringing');
+  document.getElementById('incomingBadge').classList.remove('hidden'); document.getElementById('callControlsOutgoing').classList.add('hidden'); document.getElementById('callControlsIncoming').classList.remove('hidden'); if(notifEnabled){ ringLoop(); }
 }
 
 async function acceptCall(){
-  document.getElementById('incomingBadge').classList.add('hidden');
-  document.getElementById('callControlsIncoming').classList.add('hidden');
-  document.getElementById('callControlsOutgoing').classList.remove('hidden');
-  document.getElementById('localVideo').classList.toggle('hidden', !inCallVideo);
-  try{ mediaStream = await navigator.mediaDevices.getUserMedia({video: inCallVideo, audio:true}); }
-  catch(e){ showToast('Xato','Kamera/mikrofonga ruxsat yo\'q'); rejectCall(); return; }
-  document.getElementById('localVideo').srcObject = mediaStream;
-  pc = createPeerConnection(callTargetUser);
-  mediaStream.getTracks().forEach(t=> pc.addTrack(t, mediaStream));
-  await pc.setRemoteDescription(new RTCSessionDescription(window.__incomingSdp));
-  const answer = await pc.createAnswer();
-  await pc.setLocalDescription(answer);
-  await pushSignal(callTargetUser, 'call-answer', false, answer);
-  document.getElementById('callStatus').textContent = 'Ulandi';
-  document.getElementById('callStatus').classList.remove('ringing');
+  document.getElementById('incomingBadge').classList.add('hidden'); document.getElementById('callControlsIncoming').classList.add('hidden'); document.getElementById('callControlsOutgoing').classList.remove('hidden'); document.getElementById('localVideo').classList.toggle('hidden', !inCallVideo);
+  try{ mediaStream = await navigator.mediaDevices.getUserMedia({video: inCallVideo, audio:true}); } catch(e){ rejectCall(); return; }
+  document.getElementById('localVideo').srcObject = mediaStream; pc = createPeerConnection(callTargetUser); mediaStream.getTracks().forEach(t=> pc.addTrack(t, mediaStream));
+  await pc.setRemoteDescription(new RTCSessionDescription(window.__incomingSdp)); const answer = await pc.createAnswer(); await pc.setLocalDescription(answer); await pushSignal(callTargetUser, 'call-answer', false, answer);
+  document.getElementById('callStatus').textContent = 'Ulandi'; document.getElementById('callStatus').classList.remove('ringing');
 }
 function rejectCall(){ if(callTargetUser) pushSignal(callTargetUser, 'call-reject', false, null); endCall(true); }
 function endCall(skipNotify){
-  if(!skipNotify && callTargetUser) pushSignal(callTargetUser, 'call-end', false, null);
-  if(mediaStream){ mediaStream.getTracks().forEach(t=>t.stop()); mediaStream=null; }
-  if(pc){ pc.close(); pc=null; }
-  document.getElementById('callOverlay').classList.add('hidden');
-  document.getElementById('remoteVideo').srcObject = null;
-  document.getElementById('localVideo').srcObject = null;
-  callTargetUser = null; micOn = true; camOn = true;
+  if(!skipNotify && callTargetUser) pushSignal(callTargetUser, 'call-end', false, null); if(mediaStream){ mediaStream.getTracks().forEach(t=>t.stop()); mediaStream=null; } if(pc){ pc.close(); pc=null; }
+  document.getElementById('callOverlay').classList.add('hidden'); document.getElementById('remoteVideo').srcObject = null; document.getElementById('localVideo').srcObject = null; callTargetUser = null; micOn = true; camOn = true;
 }
-function toggleMic(){
-  if(!mediaStream) return;
-  micOn = !micOn;
-  mediaStream.getAudioTracks().forEach(t=> t.enabled = micOn);
-  document.getElementById('micBtn').classList.toggle('off', !micOn);
-}
-function toggleCam(){
-  if(!mediaStream) return;
-  camOn = !camOn;
-  mediaStream.getVideoTracks().forEach(t=> t.enabled = camOn);
-  document.getElementById('camBtn').classList.toggle('off', !camOn);
-}
+function toggleMic(){ if(!mediaStream) return; micOn = !micOn; mediaStream.getAudioTracks().forEach(t=> t.enabled = micOn); document.getElementById('micBtn').classList.toggle('off', !micOn); }
+function toggleCam(){ if(!mediaStream) return; camOn = !camOn; mediaStream.getVideoTracks().forEach(t=> t.enabled = camOn); document.getElementById('camBtn').classList.toggle('off', !camOn); }
 
-/* =========================================================
-   ONLINE / OFFLINE
-========================================================= */
 function updateOnlineStatus(){ document.getElementById('offlineScreen').classList.toggle('hidden', navigator.onLine); }
-window.addEventListener('online', updateOnlineStatus);
-window.addEventListener('offline', updateOnlineStatus);
-updateOnlineStatus();
-
+window.addEventListener('online', updateOnlineStatus); window.addEventListener('offline', updateOnlineStatus); updateOnlineStatus();
 </script>
 </body>
 </html>
